@@ -8,6 +8,10 @@ A CLI tool that pulls tennis activities from [kuyy.id](https://kuyy.id) and expo
 2. **Sort by what matters** -- Sort by distance from wherever you'll be (home, office, anywhere), by price, or by time. The website only sorts by time.
 3. **Filter precisely** -- Narrow down to an exact time window (e.g. 18:00-21:00 WIB) and get only the sessions that fit your schedule, across all venues.
 
+## What we can improve
+- [ ] CSV result don't overwrite each other if the parameters are different
+- [ ] Add a column to give information about remaining slot
+
 ## Setup
 
 ```bash
