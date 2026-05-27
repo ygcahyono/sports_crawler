@@ -88,7 +88,10 @@ def fetch_all_activities(page, date: str) -> list:
 
     data = resp.json().get("data") or []
     print(f"  Fetched {len(data)} activities from API.")
-    return data
+    # API ignores the category param and returns all sports; filter locally.
+    tennis = [a for a in data if "tennis" in (a.get("categories") or [])]
+    print(f"  Kept {len(tennis)} tennis activities.")
+    return tennis
 
 
 def timestamp_to_wib(ts: str) -> str:
