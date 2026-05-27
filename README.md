@@ -28,10 +28,10 @@ cp .env.example .env
 
 ```
 KUYY_EMAIL=you@example.com
-LOC_HOME=-6.229942, 106.888373
-LOC_WORK=-6.225897, 106.808559
-LOC_TRC=-6.230666, 106.780111
-LOC_KEMANG=-6.273797, 106.819399
+LOC_HOME=<lat>, <lon>
+LOC_WORK=<lat>, <lon>
+LOC_TRC=<lat>, <lon>
+LOC_KEMANG=<lat>, <lon>
 ```
 
 Add as many `LOC_*` entries as you like. The name after `LOC_` becomes the `--from` value.
@@ -69,7 +69,7 @@ python3 crawl.py --date 2026-05-27 --start-time 18:00 --end-time 23:59 --sort-by
 python3 crawl.py --date 2026-05-27 -o my_file.xlsx
 ```
 
-Output is saved to `output/kuyy_tennis_<date>.xlsx` by default.
+Output is saved to `output/kuyy_tennis_<date>.xlsx` by default. The spreadsheet includes a `Type` column tagging each activity as `Single`, `Double`, `Coaching`, or any combination (derived from the activity name).
 
 ## All options
 

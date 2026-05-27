@@ -18,6 +18,15 @@ SITE_URL = "https://kuyy.id"
 API_URL = "https://kuyy.app/api/events"
 WIB = timezone(timedelta(hours=7))
 
+TYPE_KEYWORDS = [("single", "Single"), ("double", "Double"), ("coach", "Coaching")]
+
+
+def classify_type(name: str) -> str:
+    if not name:
+        return ""
+    lower = name.lower()
+    return ", ".join(label for kw, label in TYPE_KEYWORDS if kw in lower)
+
 
 def load_locations() -> dict:
     locations = {}
@@ -137,6 +146,7 @@ def activities_to_excel(activities: list, output_path: str, date: str, location:
     ]
     if has_distance:
         headers.append(f"Dist from {location_name} (km)")
+    headers.append("Type")
     headers.append("Link")
 
     header_fill = PatternFill(start_color="FF710B", end_color="FF710B", fill_type="solid")
@@ -174,6 +184,7 @@ def activities_to_excel(activities: list, output_path: str, date: str, location:
             lon = act.get("longitude", 0) or 0
             dist = round(haversine_km(location[0], location[1], lat, lon), 1) if lat and lon else None
             values.append(dist)
+        values.append(classify_type(act.get("name", "")))
         values.append(f"{SITE_URL}/activities/{act.get('id', '')}")
 
         for col, val in enumerate(values, 1):
@@ -184,6 +195,7 @@ def activities_to_excel(activities: list, output_path: str, date: str, location:
     col_widths = [45, 25, 30, 50, 12, 16, 16, 15]
     if has_distance:
         col_widths.append(14)
+    col_widths.append(18)
     col_widths.append(55)
     for col, width in enumerate(col_widths, 1):
         ws.column_dimensions[ws.cell(row=1, column=col).column_letter].width = width

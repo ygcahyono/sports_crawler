@@ -37,8 +37,8 @@ All times in the API are in UTC. The script converts to WIB (UTC+7) for display 
 Distances are computed using the haversine formula (great-circle distance). Locations are defined in `.env` with the `LOC_` prefix:
 
 ```
-LOC_HOME=-6.229942, 106.888373
-LOC_WORK=-6.225897, 106.808559
+LOC_HOME=<lat>, <lon>
+LOC_WORK=<lat>, <lon>
 ```
 
 When `--sort-by distance` is used, activities are sorted by proximity to the chosen location. The distance column is included in the Excel output whenever any location is configured.
@@ -58,6 +58,7 @@ Each row is one activity. Columns:
 | End Time (WIB) | End time converted to WIB |
 | Price (Rp) | Price in Indonesian Rupiah |
 | Dist from *location* (km) | Distance from chosen location (only when locations are configured) |
+| Type | Derived from the activity name (case-insensitive). Tags any combination of `Single` ("single"), `Double` ("double"), `Coaching` ("coach"). Multiple matches are joined with `, `. Empty when none match. |
 | Link | Direct URL to the activity on kuyy.id |
 
 The header row is styled, columns are auto-sized, and Excel auto-filter is enabled.
