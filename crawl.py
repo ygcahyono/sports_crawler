@@ -235,7 +235,7 @@ def main():
         print("Now re-run with --otp <code> to complete login and crawl.")
         return
 
-    output = args.output or f"output/kuyy_tennis_{args.date}.xlsx"
+    output = args.output or f"output/kuyy_tennis_{args.date}_{args.start_time.replace(':', '')}-{args.end_time.replace(':', '')}_by-{args.sort_by}_from-{args.location.lower()}.xlsx"
 
     with sync_playwright() as pw:
         browser = pw.chromium.launch(headless=headless)
